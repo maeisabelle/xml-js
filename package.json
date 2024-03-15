@@ -7,11 +7,18 @@
     "url": "git+https://github.com/nashwaan/xml-js.git"
   },
   "author": "Yousuf Almarzooqi <ysf953@gmail.com>",
+  "contributors" : [
+    {
+      "name" : "Mae Isabelle Turiana",
+      "email" : "maeisabelle@gmail.com",
+      "url" : "https://github.com/maeisabelle"
+    }
+  ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nashwaan/xml-js/issues"
+    "url": "https://github.com/maeisabelle/xml-js/issues"
   },
-  "homepage": "https://github.com/nashwaan/xml-js#readme",
+  "homepage": "https://github.com/maeisabelle/xml-js#readme",
   "keywords": [
     "XML",
     "xml",
