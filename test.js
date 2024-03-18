@@ -82,3 +82,7 @@ var newXml5 = convert.json2xml(json5, {compact: true});
 console.log("---newXml----");
 console.log(newXml5);
 console.log("Equal? " + (newXml5 == xml5));
+var json = '{"name":[{"_text":"Ali"}],"age":[{"_text":"30"}]}';
+var options = {compact: true, elementNameFn: function(val) { var prefix = (val === 'age') ? 'bar:' : 'foo:'; return prefix + val;}};
+var result = convert.json2xml(json, options);
+console.log(result);

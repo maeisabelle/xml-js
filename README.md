@@ -122,11 +122,11 @@ Or [run and edit](https://runkit.com/587874e079a2f60013c1f5ac/587874e079a2f60013
 
 | XML | JS/JSON compact | JS/JSON non-compact |
 |:----|:----------------|:--------------------|
-| `<a/>` | `{"a":{}}` | `{"elements":[{"type":"element","name":"a"}]}` |
-| `<a/><b/>` | `{"a":{},"b":{}}` | `{"elements":[{"type":"element","name":"a"},{"type":"element","name":"b"}]}` |
-| `<a><b/></a>` | `{"a":{"b":{}}}` | `{"elements":[{"type":"element","name":"a","elements":[{"type":"element","name":"b"}]}]}` |
-| `<a> Hi </a>` | `{"a":{"_text":" Hi "}}` | `{"elements":[{"type":"element","name":"a","elements":[{"type":"text","text":" Hi "}]}]}` |
-| `<a x="1.234" y="It's"/>` | `{"a":{"_attributes":{"x":"1.234","y":"It's"}}}` | `{"elements":[{"type":"element","name":"a","attributes":{"x":"1.234","y":"It's"}}]}` |
+| `<a/>` | `{"a":[]}` | `{"elements":[{"type":"element","name":"a"}]}` |
+| `<a/><b/>` | `{"a":[],"b":[]}` | `{"elements":[{"type":"element","name":"a"},{"type":"element","name":"b"}]}` |
+| `<a><b/></a>` | `{"a":[{"b":[]}]}` | `{"elements":[{"type":"element","name":"a","elements":[{"type":"element","name":"b"}]}]}` |
+| `<a> Hi </a>` | `{"a":[{"_text":" Hi "}]}` | `{"elements":[{"type":"element","name":"a","elements":[{"type":"text","text":" Hi "}]}]}` |
+| `<a x="1.234" y="It's"/>` | `{"a":[{"_attributes":{"x":"1.234","y":"It's"}}]}` | `{"elements":[{"type":"element","name":"a","attributes":{"x":"1.234","y":"It's"}}]}` |
 | `<?xml?>` | `{"_declaration":{}}` | `{"declaration":{}}` |
 | `<?go there?>` | `{"_instruction":{"go":"there"}}` | `{"elements":[{"type":"instruction","name":"go","instruction":"there"}]}` |
 | `<?xml version="1.0" encoding="utf-8"?>` | `{"_declaration":{"_attributes":{"version":"1.0","encoding":"utf-8"}}}` | `{"declaration":{"attributes":{"version":"1.0","encoding":"utf-8"}}}` |
@@ -251,7 +251,7 @@ var convert = require('xml-js');
 var xml = '<foo:Name>Ali</Name> <bar:Age>30</bar:Age>';
 var options = {compact: true, elementNameFn: function(val) {return val.replace('foo:','').toUpperCase();}};
 var result = convert.xml2json(xml, options);
-console.log(result); // {"NAME":{"_text":"Ali"},"BAR:AGE":{"_text":"30"}}
+console.log(result); // {"NAME":[{"_text":"Ali"}],"BAR:AGE":[{"_text":"30"}]}
 ```
 
 | Option              | Signature | Description |
@@ -271,10 +271,10 @@ For JS object / JSON → XML, following custom callback functions can be supplie
 
 ```js
 var convert = require('xml-js');
-var json = '{"name":{"_text":"Ali"},"age":{"_text":"30"}}';
-var options = {compact: true, textFn: function(val, elementName) {return elementName === 'age'? val + '';}};
+var json = '{"name":[{"_text":"Ali"}],"age":[{"_text":"30"}]}';
+var options = {compact: true, elementNameFn: function(val, elementName) {var prefix = elementName === 'age'? 'bar:' : 'foo:'; return prefix + val;}};
 var result = convert.json2xml(json, options);
-console.log(result); // <foo:Name>Ali</Name> <bar:Age>30</bar:Age>
+console.log(result); // <foo:name>Ali</name> <bar:age>30</bar:age>
 ```
 
 | Option              | Signature | Description |
