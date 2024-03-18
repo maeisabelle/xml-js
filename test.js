@@ -86,3 +86,63 @@ var json = '{"name":[{"_text":"Ali"}],"age":[{"_text":"30"}]}';
 var options = {compact: true, elementNameFn: function(val) { var prefix = (val === 'age') ? 'bar:' : 'foo:'; return prefix + val;}};
 var result = convert.json2xml(json, options);
 console.log(result);
+
+var xml =
+'<?xml version="1.0" encoding="utf-8"?>\n' +
+'<dp:ListServicesReply ReturnCode="0" xmlns:dp="http://www.cisco.com/vtg/diagnosticportal">\n' +
+'  <dp:Schema Version="1.0" />\n' +
+'  <dp:ServiceList>\n' +
+'    <dp:Service Name="Cisco ICM usgd1 LoggerA" Description="Provides Call Logging services for Instance usgd1" Status="Running" StartupType="Auto" LogOnAs="****" />\n' +
+'    <dp:Service Name="Cisco ICM Diagnostic Framework" Description="Provides a web-based diagnostic service for Cisco Unified ICM, Contact Center Enterprise application." Status="Running" StartupType="Auto" LogOnAs="LocalSystem" />\n' +
+'  </dp:ServiceList>\n' +
+'</dp:ListServicesReply>';
+var json = {
+  "_declaration": {
+    "_attributes": {
+      "version": "1.0",
+      "encoding": "utf-8"
+    }
+  },
+  "dp:ListServicesReply": [{
+    "_attributes": {
+      "ReturnCode": "0",
+      "xmlns:dp": "http://www.cisco.com/vtg/diagnosticportal"
+    }},{
+    "dp:Schema": [{
+      "_attributes": {
+        "Version": "1.0"
+      }
+    }]},{
+    "dp:ServiceList": [{
+      "dp:Service": [
+        {
+          "_attributes": {
+            "Name": "Cisco ICM usgd1 LoggerA",
+            "Description": "Provides Call Logging services for Instance usgd1",
+            "Status": "Running",
+            "StartupType": "Auto",
+            "LogOnAs": "****"
+          }
+        }
+      ]},{
+      "dp:Service": [  
+        {
+          "_attributes": {
+            "Name": "Cisco ICM Diagnostic Framework",
+            "Description": "Provides a web-based diagnostic service for Cisco Unified ICM, Contact Center Enterprise application.",
+            "Status": "Running",
+            "StartupType": "Auto",
+            "LogOnAs": "LocalSystem"
+          }
+        }
+      ]
+    }]
+  }]
+};
+var expected = JSON.stringify(json);
+var actual = convert.xml2json(xml, {compact: true});
+console.log("expected");
+console.log(expected);
+console.log("actual");
+console.log(actual);
+console.log("Equal? " + (expected == actual));

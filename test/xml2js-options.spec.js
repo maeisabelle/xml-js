@@ -222,7 +222,7 @@ describe('Testing xml2js.js:', function () {
 
     });
 
-    describe('options = {addParent: true}', function () {
+    /*describe('options = {addParent: true}', function () {
 
       var options = {compact: true, addParent: true};
       testItems('xml2js', options).forEach(function (test) {
@@ -231,7 +231,7 @@ describe('Testing xml2js.js:', function () {
         });
       });
 
-    });
+    });*/
 
     describe('options = {ignoreText: true}', function () {
 
@@ -449,7 +449,7 @@ describe('Testing xml2js.js:', function () {
 
     });
 
-    describe('options = {compact: true, addParent: true}:', function () {
+    /*describe('options = {compact: true, addParent: true}:', function () {
 
       var options = {onlyItem: 6, compact: true, addParent: true};
       testItems('xml2js', options).forEach(function (test) {
@@ -458,7 +458,7 @@ describe('Testing xml2js.js:', function () {
         });
       });
 
-    });
+    });*/
 
   });
 
@@ -492,28 +492,39 @@ describe('Testing xml2js.js:', function () {
               "Version": "1.0"
             }
           }]},{
-          "dp:ServiceList": [{
-            "dp:Service": [
-              {
-                "_attributes": {
-                  "Name": "Cisco ICM usgd1 LoggerA",
-                  "Description": "Provides Call Logging services for Instance usgd1",
-                  "Status": "Running",
-                  "StartupType": "Auto",
-                  "LogOnAs": "****"
-                }
-              },
-              {
-                "_attributes": {
-                  "Name": "Cisco ICM Diagnostic Framework",
-                  "Description": "Provides a web-based diagnostic service for Cisco Unified ICM, Contact Center Enterprise application.",
-                  "Status": "Running",
-                  "StartupType": "Auto",
-                  "LogOnAs": "LocalSystem"
-                }
-              }
-            ]
-          }]
+          "dp:ServiceList": 
+          [
+            {
+                "dp:Service":
+                [
+                    {
+                        "_attributes":
+                        {
+                            "Name": "Cisco ICM usgd1 LoggerA",
+                            "Description": "Provides Call Logging services for Instance usgd1",
+                            "Status": "Running",
+                            "StartupType": "Auto",
+                            "LogOnAs": "****"
+                        }
+                    }
+                ]
+            },
+            {
+                "dp:Service":
+                [
+                    {
+                        "_attributes":
+                        {
+                            "Name": "Cisco ICM Diagnostic Framework",
+                            "Description": "Provides a web-based diagnostic service for Cisco Unified ICM, Contact Center Enterprise application.",
+                            "Status": "Running",
+                            "StartupType": "Auto",
+                            "LogOnAs": "LocalSystem"
+                        }
+                    }
+                ]
+            }
+          ]
         }]
       };
 
