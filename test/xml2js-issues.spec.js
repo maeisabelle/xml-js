@@ -25,39 +25,38 @@ describe('Testing xml2js.js:', function () {
             "encoding": "utf-8"
           }
         },
-        "dp:ListServicesReply": {
+        "dp:ListServicesReply": [{
           "_attributes": {
             "ReturnCode": "0",
             "xmlns:dp": "http://www.cisco.com/vtg/diagnosticportal"
-          },
-          "dp:Schema": {
+          }},{
+          "dp:Schema": [{
             "_attributes": {
               "Version": "1.0"
             }
-          },
-          "dp:ServiceList": {
-            "dp:Service": [
-              {
-                "_attributes": {
-                  "Name": "Cisco ICM usgd1 LoggerA",
-                  "Description": "Provides Call Logging services for Instance usgd1",
-                  "Status": "Running",
-                  "StartupType": "Auto",
-                  "LogOnAs": "****"
-                }
-              },
-              {
-                "_attributes": {
-                  "Name": "Cisco ICM Diagnostic Framework",
-                  "Description": "Provides a web-based diagnostic service for Cisco Unified ICM, Contact Center Enterprise application.",
-                  "Status": "Running",
-                  "StartupType": "Auto",
-                  "LogOnAs": "LocalSystem"
-                }
+          }]},{
+          "dp:ServiceList": [{
+            "dp:Service": [{
+              "_attributes": {
+                "Name": "Cisco ICM usgd1 LoggerA",
+                "Description": "Provides Call Logging services for Instance usgd1",
+                "Status": "Running",
+                "StartupType": "Auto",
+                "LogOnAs": "****"
               }
-            ]
-          }
-        }
+            }]
+          },{
+            "dp:Service": [{
+              "_attributes": {
+                "Name": "Cisco ICM Diagnostic Framework",
+                "Description": "Provides a web-based diagnostic service for Cisco Unified ICM, Contact Center Enterprise application.",
+                "Status": "Running",
+                "StartupType": "Auto",
+                "LogOnAs": "LocalSystem"
+              }
+            }]
+          }]
+        }]
       };
 
       it('should output as expected json', function () {
@@ -131,20 +130,20 @@ describe('Testing xml2js.js:', function () {
             "encoding": "UTF-8"
           }
         },
-        "note": {
-          "to": {
+        "note": [{
+          "to": [{
             "_text": "xml-js"
-          },
-          "from": {
+          }]},{
+          "from": [{
             "_text": "ACraig"
-          },
-          "heading": {
+          }]},{
+          "heading": [{
             "_text": "Min Example"
-          },
-          "body": {
+          }]},{
+          "body": [{
             "_text": "Here are some characters that get sanitized: \" '"
-          }
-        }
+          }]}
+        ]
       };
 
       it('should convert xml object to js and back to xml correctly', function () {
@@ -269,29 +268,29 @@ describe('Testing xml2js.js:', function () {
         '  </d:response>\n' +
         '</d:multistatus>';
       var js1 = {
-        "d:multistatus": {
+        "d:multistatus": [{
           "_attributes": {
             "xmlns": "DAV:"
-          },
-          "response": {
-            "href": {
+          }},{
+          "response": [{
+            "href": [{
               "_text": "/"
-            },
-            "propstat": {
-              "prop": {
-                "current-user-principal": {
-                  "href": {
+            }]},{
+            "propstat": [{
+              "prop": [{
+                "current-user-principal": [{
+                  "href": [{
                     "_text": "/principals/users/johndoe/"
-                  }
-                }
-              },
-              "status": {
+                  }]
+                }]
+              },{
+              "status": [{
                 "_text": "HTTP/1.1 200 OK"
-              }
-            }
-          }
-        }
-      };
+              }]
+            }]
+          }]
+        }]}
+      ]};
       var js2 = {
         "d:multistatus": {
           "_attributes": {
@@ -317,28 +316,28 @@ describe('Testing xml2js.js:', function () {
         }
       };
       var js = {
-        "d:multistatus": {
+        "d:multistatus": [{
           "_attributes": {
             "xmlns:d": "DAV:"
-          },
-          "DAV:response": {
-            "DAV:href": {
+          }},{
+          "DAV:response": [{
+            "DAV:href": [{
               "_text": "/"
-            },
-            "DAV:propstat": {
-              "DAV:prop": {
-                "DAV:current-user-principal": {
-                  "DAV:href": {
+            }]},{
+            "DAV:propstat": [{
+              "DAV:prop": [{
+                "DAV:current-user-principal": [{
+                  "DAV:href": [{
                     "_text": "/principals/users/johndoe/"
-                  }
-                }
-              },
-              "DAV:status": {
+                  }]
+                }]
+              }]},{
+              "DAV:status": [{
                 "_text": "HTTP/1.1 200 OK"
-              }
-            }
-          }
-        }
+              }]
+            }]
+          }]
+        }]
       };
 
       it('should convert without resolving namespace', function () {

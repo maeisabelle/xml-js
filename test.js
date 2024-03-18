@@ -72,7 +72,7 @@ var newXml4 = convert.json2xml(json4, {compact: true, spaces: 4, fullTagEmptyEle
 console.log("---newXml----");
 console.log(newXml4);
 console.log("Equal? " + (newXml4 == xml4));
-var xml5 = '<a/>';
+var xml5 = '<a><b><c/></b></a>';
 console.log("---expected xml----");
 console.log(xml5);
 var json5 = convert.xml2json(xml5, {compact: true});
