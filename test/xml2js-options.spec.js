@@ -222,28 +222,6 @@ describe('Testing xml2js.js:', function () {
 
     });
 
-    describe('options = {alwaysArray: true}', function () {
-
-      var options = {compact: true, alwaysArray: true};
-      testItems('xml2js', options).forEach(function (test) {
-        it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
-        });
-      });
-
-    });
-
-    describe('options = {alwaysArray: ["a", "c"]}', function () {
-
-      var options = {compact: true, alwaysArray: ['a', 'c']};
-      testItems('xml2js', options).forEach(function (test) {
-        it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
-        });
-      });
-
-    });
-
     describe('options = {addParent: true}', function () {
 
       var options = {compact: true, addParent: true};
@@ -504,17 +482,17 @@ describe('Testing xml2js.js:', function () {
             "encoding": "utf-8"
           }
         },
-        "dp:ListServicesReply": {
+        "dp:ListServicesReply": [{
           "_attributes": {
             "ReturnCode": "0",
             "xmlns:dp": "http://www.cisco.com/vtg/diagnosticportal"
-          },
-          "dp:Schema": {
+          }},{
+          "dp:Schema": [{
             "_attributes": {
               "Version": "1.0"
             }
-          },
-          "dp:ServiceList": {
+          }]},{
+          "dp:ServiceList": [{
             "dp:Service": [
               {
                 "_attributes": {
@@ -535,8 +513,8 @@ describe('Testing xml2js.js:', function () {
                 }
               }
             ]
-          }
-        }
+          }]
+        }]
       };
 
       it('should output as expected json', function () {

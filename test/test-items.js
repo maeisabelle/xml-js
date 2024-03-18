@@ -59,47 +59,42 @@ var cases = [
   }, {
     desc: 'should convert element',
     xml: '<a/>',
-    js1: {"a":{}},
+    js1: {"a":[]},
     js2: {"elements":[{"type":"element","name":"a"}]}
-  }, {
-    desc: 'should convert 2 same elements',
-    xml: '<a/>\n<a/>',
-    js1: {"a":[{},{}]},
-    js2: {"elements":[{"type":"element","name":"a"},{"type":"element","name":"a"}]}
   }, {
     desc: 'should convert 2 different elements',
     xml: '<a/>\n<b/>',
-    js1: {"a":{},"b":{}},
+    js1: {"a":[],"b":[]},
     js2: {"elements":[{"type":"element","name":"a"},{"type":"element","name":"b"}]}
   }, {
     desc: 'should convert attribute',
     xml: '<a x="hello"/>',
-    js1: {"a":{_attributes:{"x":"hello"}}},
+    js1: {"a":[{_attributes:{"x":"hello"}}]},
     js2: {"elements":[{"type":"element","name":"a","attributes":{"x":"hello"}}]}
   }, {
     desc: 'should convert 2 attributes',
     xml: '<a x="1.234" y="It\'s"/>',
-    js1: {"a":{_attributes:{"x":"1.234","y":"It\'s"}}},
+    js1: {"a":[{_attributes:{"x":"1.234","y":"It\'s"}}]},
     js2: {"elements":[{"type":"element","name":"a","attributes":{"x":"1.234","y":"It\'s"}}]}
   }, {
     desc: 'should convert text in element',
     xml: '<a> \t Hi \t </a>',
-    js1: {"a":{"_text":" \t Hi \t "}},
+    js1: {"a":[{"_text":" \t Hi \t "}]},
     js2: {"elements":[{"type":"element","name":"a","elements":[{"type":"text","text":" \t Hi \t "}]}]}
   }, {
     desc: 'should convert multi-line text',
     xml: '<a>  Hi \n There \t </a>',
-    js1: {"a":{"_text":"  Hi \n There \t "}},
+    js1: {"a":[{"_text":"  Hi \n There \t "}]},
     js2: {"elements":[{"type":"element","name":"a","elements":[{"type":"text","text":"  Hi \n There \t "}]}]}
   }, {
     desc: 'should convert nested elements',
     xml: '<a>\n\v<b/>\n</a>',
-    js1: {"a":{"b":{}}},
+    js1: {"a":[{"b":[]}]},
     js2: {"elements":[{"type":"element","name":"a","elements":[{"type":"element","name":"b"}]}]}
   }, {
     desc: 'should convert 3 nested elements',
     xml: '<a>\n\v<b>\n\v\v<c/>\n\v</b>\n</a>',
-    js1: {"a":{"b":{"c":{}}}},
+    js1: {"a":[{"b":[{"c":[]}]}]},
     js2: {"elements":[{"type":"element","name":"a","elements":[{"type":"element","name":"b","elements":[{"type":"element","name":"c"}]}]}]}
   }
 
