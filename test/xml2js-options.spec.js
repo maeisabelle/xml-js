@@ -610,20 +610,20 @@ describe('Testing xml2js.js:', function () {
             "encoding": "UTF-8"
           }
         },
-        "note": {
-          "to": {
+        "note": [{
+          "to": [{
             "_text": "xml-js"
-          },
-          "from": {
+          }]},{
+          "from": [{
             "_text": "ACraig"
-          },
-          "heading": {
+          }]},{
+          "heading": [{
             "_text": "Min Example"
-          },
-          "body": {
+          }]},{
+          "body": [{
             "_text": "Here are some characters that get sanitized: \" '"
-          }
-        }
+          }]}
+        ]
       };
 
       it('should convert xml object to js and back to xml correctly', function () {
