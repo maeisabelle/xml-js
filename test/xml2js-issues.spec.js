@@ -355,11 +355,11 @@ describe('Testing xml2js.js:', function () {
       // see https://github.com/nashwaan/xml-js/issues/26
       var xml = '<parser start="^\\s*?&lt;name&gt;regex&lt;/name&gt;$"/>';
       var js = {
-        parser: {
+        parser: [{
           _attributes: {
             start: '^\\s*?<name>regex</name>$'
           }
-        }
+        }]
       };
 
       it('should xml to json and back to xml', function () {
@@ -373,16 +373,17 @@ describe('Testing xml2js.js:', function () {
 
     describe('case by SergeyAlexsandrovich', function () {
       // see https://github.com/nashwaan/xml-js/issues/44
-      var xml = '<material><font size="14"/></material><material><font size="14"/></material>';
+      var xml = '<material1><font size="14"/></material1><material2><font size="14"/></material2>';
       var js = {
-        "material": [{
-          "font": {
+        "material1": [{
+          "font": [{
             "_attributes": {"size":"14"}
-          }
-        }, {
-          "font": {
+          }]
+        }],  
+        "material2": [{
+          "font": [{
             "_attributes": {"size":"14"}
-          }
+          }]
         }]
       };
       it('should json to xml and back to json', function () {

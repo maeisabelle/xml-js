@@ -384,22 +384,23 @@ describe('Testing js2xml.js:', function () {
       var scriptCode =
       '(function() {\n' +
       '  const obj = {\n' +
-      '    customers : {\n' +
+      '    customers : [{\n' +
       '      customer: [\n' +
       '        {\n' +
-      '          _text: \'John Doe\',\n' +
+      '          _text: \'John Doe\'},{\n' +
       '          _attributes: {\n' +
       '            status: \'silver\'\n' +
       '          }\n' +
-      '        },\n' +
+      '        }],{\n' +
+      '      customer: [\n' +
       '        {\n' +
-      '          _text: \'Alice Allgood\',\n' +
+      '          _text: \'Alice Allgood\'},{\n' +
       '          _attributes: {\n' +
       '            status: \'gold\'\n' +
       '          }\n' +
       '        }\n' +
       '      ]\n' +
-      '    }\n' +
+      '    }]\n' +
       '  };\n' +
       '  output = convert.js2xml(obj, { compact: true });\n' +
       '})()\n';
