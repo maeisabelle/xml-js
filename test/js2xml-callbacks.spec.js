@@ -218,7 +218,7 @@ describe('Testing js2xml.js:', function () {
 
     describe('options = {textFn: manipulate}', function () {
 
-      var js = {"a":{"_text":" \t Hi \t "}};
+      var js = {"a":[{"_text":" \t Hi \t "}]};
       var xml = '<a>' + manipulate(' \t Hi \t ') + '</a>';
       it('<a> \t Hi \t </a>', function () {
         expect(convert.js2xml(js, {compact: true, textFn: manipulate})).toEqual(xml);
@@ -244,7 +244,7 @@ describe('Testing js2xml.js:', function () {
 
     describe('options = {elementNameFn: manipulate}', function () {
 
-      var js = {"a":{_attributes:{"x":"hello"}}};
+      var js = {"a":[{_attributes:{"x":"hello"}}]};
       var xml = '<' + manipulate('a') + ' x="hello"/>';
       it('<a x="hello"/>', function () {
         expect(convert.js2xml(js, {compact: true, elementNameFn: manipulate})).toEqual(xml);
@@ -257,7 +257,7 @@ describe('Testing js2xml.js:', function () {
 
     describe('options = {attributeNameFn: manipulate}', function () {
 
-      var js = {"a":{_attributes:{"x":"1.234","y":"It\'s"}}};
+      var js = {"a":[{_attributes:{"x":"1.234","y":"It\'s"}}]};
       var xml = '<a ' + manipulate('x') + '="1.234" ' + manipulate('y') + '="It\'s"/>';
       it('<a x="1.234" y="It\'s"/>', function () {
         expect(convert.js2xml(js, {compact: true, attributeNameFn: manipulate})).toEqual(xml);
@@ -270,7 +270,7 @@ describe('Testing js2xml.js:', function () {
 
     describe('options = {attributeValueFn: manipulate}', function () {
 
-      var js = {"a":{_attributes:{"x":"1.234","y":"It\'s"}}};
+      var js = {"a":[{_attributes:{"x":"1.234","y":"It\'s"}}]};
       var xml = '<a x="' + manipulate('1.234') + '" y="' + manipulate('It\'s') + '"/>';
       it('<a x="1.234" y="It\'s"/>', function () {
         expect(convert.js2xml(js, {compact: true, attributeValueFn: manipulate})).toEqual(xml);
@@ -283,7 +283,7 @@ describe('Testing js2xml.js:', function () {
 
     describe('options = {attributesFn: manipulateAttribute}', function () {
 
-      var js = {"a":{_attributes:{"x":"1.234","y":"It\'s"}}};
+      var js = {"a":[{_attributes:{"x":"1.234","y":"It\'s"}}]};
       var xml = '<a ' + manipulate('x="1.234" y="It\'s"') + '/>';
       it('<a x="1.234" y="It\'s"/>', function () {
         expect(convert.js2xml(js, {compact: true, attributesFn: manipulateAttribute})).toEqual(xml);
@@ -313,7 +313,7 @@ describe('Testing js2xml.js:', function () {
 
     describe('options = {compact: true}', function () {
 
-      var js = {"a":{},"b":{}};
+      var js = {"a":[],"b":[]};
       var xml = '<a/><b></b>';
       it('<a/><b/>', function () {
         expect(convert.js2xml(js, {compact: true, fullTagEmptyElementFn: fullTag})).toEqual(xml);

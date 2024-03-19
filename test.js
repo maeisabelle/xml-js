@@ -86,7 +86,36 @@ var json = '{"name":[{"_text":"Ali"}],"age":[{"_text":"30"}]}';
 var options = {compact: true, elementNameFn: function(val) { var prefix = (val === 'age') ? 'bar:' : 'foo:'; return prefix + val;}};
 var result = convert.json2xml(json, options);
 console.log(result);
-
+var xml6 = "<?xml?><a/><b/>";
+console.log("---expected xml----");
+console.log(xml6);
+var json6 = convert.xml2json(xml6, {compact: true});
+console.log("---json----");
+console.log(json6);
+var newXml6 = convert.json2xml(json6, {compact: true});
+console.log("---newXml----");
+console.log(newXml6);
+console.log("Equal? " + (newXml6 == xml6));
+var xml7 = "<a/><b/>";
+console.log("---expected xml----");
+console.log(xml7);
+var json7 = convert.xml2json(xml7, {compact: true});
+console.log("---json----");
+console.log(json7);
+var newXml7 = convert.json2xml(json7, {compact: true});
+console.log("---newXml----");
+console.log(newXml7);
+console.log("Equal? " + (newXml7 == xml7));
+var xml8 = "<?xml?><a><b/></a>";
+console.log("---expected xml----");
+console.log(xml8);
+var json8 = convert.xml2json(xml8, {compact: true});
+console.log("---json----");
+console.log(json8);
+var newXml8 = convert.json2xml(json8, {compact: true});
+console.log("---newXml----");
+console.log(newXml8);
+console.log("Equal? " + (newXml8 == xml8));
 var xml =
 '<?xml version="1.0" encoding="utf-8"?>\n' +
 '<dp:ListServicesReply ReturnCode="0" xmlns:dp="http://www.cisco.com/vtg/diagnosticportal">\n' +

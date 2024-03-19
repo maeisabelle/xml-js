@@ -14,12 +14,12 @@ var cases = [
   }, {
     desc: 'declaration and element',
     xml: '<?xml?>\n<a/>',
-    js1: {"_declaration":{},"a":{}},
+    js1: {"_declaration":{},"a":[]},
     js2: {"declaration":{},"elements":[{"type":"element","name":"a"}]}
   }, {
     desc: 'declaration and elements',
     xml: '<?xml?>\n<a>\n\v<b/>\n</a>',
-    js1: {"_declaration":{},"a":{"b":{}}},
+    js1: {"_declaration":{},"a":[{"b":[]}]},
     js2: {"declaration":{},"elements":[{"type":"element","name":"a","elements":[{"type":"element","name":"b"}]}]}
   }, {
     desc: 'processing instruction <?go there?>',
@@ -136,7 +136,7 @@ module.exports = function (direction, options) {
         } else {
           if (key !== 'parent' && key !== '_parent') {
             obj[key] = manipulate(obj[key], fullKey);
-            if (obj[key] instanceof Array && obj[key].length === 0) {
+            if (!options.compact && obj[key] instanceof Array && obj[key].length === 0) {
               delete obj[key];
             }
           }

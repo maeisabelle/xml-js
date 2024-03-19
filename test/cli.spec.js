@@ -65,7 +65,7 @@ if (typeof jasmineRequire === 'undefined') {
 
       it('should convert xml file, --compact', function (done) {
         exec(command + ' ' + path.join(__dirname, '../bin/test.xml') + ' --compact', function (error, stdout, stderr) {
-          expect(stdout).toEqual('{"a":{"_attributes":{"x":"1"},"b":{"_text":"bye!"}}}' + '\n');
+          expect(stdout).toEqual('{"a":[{"_attributes":{"x":"1"}},{"b":[{"_text":"bye!"}]}]}' + '\n');
           done();
         });
       });
