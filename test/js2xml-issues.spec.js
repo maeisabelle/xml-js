@@ -11,17 +11,17 @@ describe('Testing js2xml.js:', function () {
       // see https://github.com/nashwaan/xml-js/issues/2
       var js = {
         _comment: ' Released under The MIT License ',
-        snippet: {
-          content: {
+        snippet: [{
+          content: [{
             _cdata: 'console.log($1)'
-          },
-          tabTrigger: {
+          }]},{
+          tabTrigger: [{
             _text: 'log'
-          },
-          scope: {
+          }]},{
+          scope: [{
             _text: 'source.js'
-          }
-        }
+          }]
+        }]
       };
       var xml =
         '<!-- Released under The MIT License -->\n' +
@@ -44,11 +44,11 @@ describe('Testing js2xml.js:', function () {
     describe('case 1 by Denis Carriere ', function () {
       // see https://github.com/nashwaan/xml-js/issues/5
       var js1 = {
-        a: {
-          b: {
+        a: [{
+          b: [{
             _text: 'foo bar'
-          }
-        }
+          }]
+        }]
       };
       var js2 = {
         elements: [{
@@ -87,15 +87,16 @@ describe('Testing js2xml.js:', function () {
             "encoding": "utf-8"
           }
         },
-        "ServiceExceptionReport": {
+        "ServiceExceptionReport": [{
           "_attributes": {
             "version": "1.1.1"
-          },
-          "_doctype": 'ServiceExceptionReport SYSTEM "http://schemas.opengis.net/wms/1.1.1/exception_1_1_1.dtd"',
-          "ServiceException": {
+          }},{
+          "_doctype": 'ServiceExceptionReport SYSTEM "http://schemas.opengis.net/wms/1.1.1/exception_1_1_1.dtd"'
+          },{
+          "ServiceException": [{
             "_text": "foo"
-          }
-        }
+          }]
+        }]
       };
       var xml =
         '<?xml version="1.0" encoding="utf-8"?>\n' +
@@ -118,11 +119,11 @@ describe('Testing js2xml.js:', function () {
             version: '1.0'
           }
         },
-        group: {
-          name: {
+        group: [{
+          name: [{
             _cdata: 'An example name'
-          }
-        }
+          }]
+        }]
       };
       var xml = '<?xml version="1.0"?>\n' +
         '<group>\n' +
@@ -192,24 +193,37 @@ describe('Testing js2xml.js:', function () {
       //     }
       // };
       var js = {
-        request: {
-          user: {
-            _text: 'username'
-          },
-          pass: {
-            _text: 'password'
-          },
-          numbers: {
-            number: [
+        request: [
+          {
+            user: [
               {
-                _text: 1
-              },
+                _text: 'username'
+              }
+            ]
+          },{
+            pass: [
               {
-                _text: 2
+                _text: 'password'
+              }
+            ]
+          },{
+            numbers: [
+              {
+                number: [
+                  {
+                    _text: 1
+                  }
+                ]
+              },{
+                number: [  
+                  {
+                    _text: 2
+                  }
+                ]
               }
             ]
           }
-        }
+        ]
       };
       var xml =
         '<request>\n' +
@@ -254,33 +268,41 @@ describe('Testing js2xml.js:', function () {
       //     }
       // };
       var js = {
-        "vertical": {
-          "_attributes": {
-            "-display_name": "Exercise"
-          },
-          "html": {
+        "vertical": [
+          {
             "_attributes": {
-              "-url_name": "12345"
+              "-display_name": "Exercise"
             }
-          },
-          "lti_consumer": {
-            "_attributes": {
-              "-url_name": "12345",
-              "-xblock-family": "xblock.v1",
-              "-accept_grades_past_due": "false",
-              "-weight": "14.0",
-              "-has_score": "true",
-              "-display_name": "Exercise",
-              "-ask_to_send_username": "true",
-              "-ask_to_send_email": "true",
-              "-button_text": "Launch Exercise",
-              "-custom_parameters": "none",
-              "-lti_id": "id",
-              "-launch_target": "new_window",
-              "-launch_url": "url"
-            }
+          },{
+            "html": [
+              {
+                "_attributes": {
+                  "-url_name": "12345"
+                }
+              }
+            ]
+          },{
+            "lti_consumer": [
+              {
+                "_attributes": {
+                  "-url_name": "12345",
+                  "-xblock-family": "xblock.v1",
+                  "-accept_grades_past_due": "false",
+                  "-weight": "14.0",
+                  "-has_score": "true",
+                  "-display_name": "Exercise",
+                  "-ask_to_send_username": "true",
+                  "-ask_to_send_email": "true",
+                  "-button_text": "Launch Exercise",
+                  "-custom_parameters": "none",
+                  "-lti_id": "id",
+                  "-launch_target": "new_window",
+                  "-launch_url": "url"
+                }
+              }
+            ]
           }
-        }
+        ]
       };
       var xml =
         '<vertical -display_name="Exercise">\n' +
@@ -297,11 +319,11 @@ describe('Testing js2xml.js:', function () {
     describe('case by mariotsi ', function () {
       // see https://github.com/nashwaan/xml-js/issues/28
       var js = {
-        a: {
+        a: [{
           _attributes: {
             num: 123
           }
-        }
+        }]
       };
       var xml = '<a num="123"/>';
 
@@ -314,7 +336,7 @@ describe('Testing js2xml.js:', function () {
     describe('case by zaesnet ', function () {
       // see https://github.com/nashwaan/xml-js/issues/30
       var js = {
-        a: {_text:'Hi There'}
+        a: [{_text:'Hi There'}]
       };
       var xml = '<a>Hi There</a>';
       it('should convert js object to xml', function () {
@@ -326,18 +348,23 @@ describe('Testing js2xml.js:', function () {
     describe('case by kolis ', function () {
       // see https://github.com/nashwaan/xml-js/issues/31
       var js = {
-        parent: {
-          _attributes: {
-            bar: 1,
-            baz: 'hello'
-          },
-          child: {
+        parent: [
+          {
             _attributes: {
-              attr1: 'a',
-              attr2: 'b'
+              bar: 1,
+              baz: 'hello'
             }
+          },{
+            child: [
+              {
+                _attributes: {
+                  attr1: 'a',
+                  attr2: 'b'
+                }
+              }
+            ]
           }
-        }
+        ]
       };
       var xml =
       '<parent\n' +
@@ -366,10 +393,14 @@ describe('Testing js2xml.js:', function () {
       //     }
       // };
       var js = {
-        example: 'value'
+        example: [
+          {
+            '_text': 'value'
+          }
+        ]
       };
       var xml = '<example>value</example>';
-      it('should convert element text without _text property', function () {
+      it('should convert element text always with _text property', function () {
         expect(convert.js2xml(js, {compact: true})).toEqual(xml);
       });
 
@@ -387,17 +418,20 @@ describe('Testing js2xml.js:', function () {
       '    customers : [{\n' +
       '      customer: [\n' +
       '        {\n' +
-      '          _text: \'John Doe\'},{\n' +
       '          _attributes: {\n' +
       '            status: \'silver\'\n' +
       '          }\n' +
-      '        }],{\n' +
+      '        },{\n' +
+      '          _text: \'John Doe\'\n' +
+      '        }\n' +
+      '      ]},{\n' +
       '      customer: [\n' +
       '        {\n' +
-      '          _text: \'Alice Allgood\'},{\n' +
       '          _attributes: {\n' +
       '            status: \'gold\'\n' +
       '          }\n' +
+      '        },{\n' +
+      '          _text: \'Alice Allgood\'\n' +
       '        }\n' +
       '      ]\n' +
       '    }]\n' +
@@ -418,10 +452,13 @@ describe('Testing js2xml.js:', function () {
     describe('case by Cy-Tek', function() {
       // see https://github.com/nashwaan/xml-js/issues/59
       var js = {
-        textless: {
-          calling_offer_code: '',
-          mailing_code: '',
-          vcpi: '' },
+        textless: [{
+          calling_offer_code: []
+        },{
+          mailing_code: []
+        },{
+          vcpi: [] 
+        }],
       };
       var xml =
       '<textless>\n' +
@@ -437,11 +474,11 @@ describe('Testing js2xml.js:', function () {
     describe('case by Nathan Perry', function() {
       // see n/a
       var js = {
-        container: {
-          cdata_section: {
+        container: [{
+          cdata_section: [{
             _cdata: '<p><![CDATA[aaaa, one <bbbb>cccc</bbbb>]]></p>',
-          },
-        },
+          }],
+        }],
       };
       var xml =
       '<container>\n' +
@@ -452,6 +489,6 @@ describe('Testing js2xml.js:', function () {
       });
     });
 
-  });
+   });
 
 });

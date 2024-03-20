@@ -175,3 +175,31 @@ console.log(expected);
 console.log("actual");
 console.log(actual);
 console.log("Equal? " + (expected == actual));
+
+var testJs = { 
+  customers : [
+    {
+      customer: [
+        {
+          _text: 'John Doe'
+        },{
+          _attributes: {
+            status: 'silver'
+          }
+        }
+      ]
+    },
+    {
+      customer: [
+        {
+          _text: 'Alice Allgood'
+        },{
+          _attributes: {
+            status: 'gold'
+          }
+        }
+      ]
+    }
+  ]
+};
+console.log(testJs);

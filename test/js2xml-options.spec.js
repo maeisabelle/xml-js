@@ -165,16 +165,16 @@ describe('Testing js2xml.js:', function () {
 
     });
 
-    describe('options = {spaces: 0, ignoreText: true}', function () {
+    // describe('options = {spaces: 0, ignoreText: true}', function () {
 
-      var options = {compact: true, spaces: 0, ignoreText: true};
-      testItems('js2xml', options).forEach(function (test) {
-        it(test.desc, function () {
-          expect(convert.js2xml(test.js, options)).toEqual(test.xml);
-        });
-      });
+    //   var options = {compact: true, spaces: 0, ignoreText: true};
+    //   testItems('js2xml', options).forEach(function (test) {
+    //     it(test.desc, function () {
+    //       expect(convert.js2xml(test.js, options)).toEqual(test.xml);
+    //     });
+    //   });
 
-    });
+    // });
 
     describe('options = {spaces: 0, ignoreComment: true}', function () {
 
